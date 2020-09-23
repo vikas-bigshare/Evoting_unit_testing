@@ -22,7 +22,7 @@ namespace TryingFLURL
         public static FJC_LoginRequest Default_user()
         {
             return new FJC_LoginRequest()
-            { UserID = "C100000000000007", system_ip = "127.0.0.128", encrypt_Password = "bigshare@123" };
+            { UserID = "C100000000000007", system_ip = "127.0.0.128", encrypt_Password = "bigshare@12" };
 
         }
         public static FJC_GenerateEVENT generate_event()
@@ -183,11 +183,10 @@ namespace TryingFLURL
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
-        public  async Task<dynamic> Get_FileUpload(FJC_FileUpload fJC_FileUpload)
+        public  async Task<dynamic> Get_FileUpload(int doc_id)   //get error in result converting
         {
-            var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).PostMultipartAsync(x =>
-                           x.AddFile("files", @"C:\Evoting-Github\Files\sample_Logo.jpg")
-                           .AddString("upload_type", "ROM")).ReceiveString();
+            // var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).PostJsonAsync(doc_id).ReceiveString();
+            var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).SetQueryParam("doc_id", doc_id).GetJsonAsync();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
@@ -205,19 +204,22 @@ namespace TryingFLURL
 
         public  async Task<dynamic> Get_List(string str)
         {
-            var get_url1 = await CommanUrl.CompanyList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+           // var get_url1 = await CommanUrl.CompanyList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+            var get_url1 = await CommanUrl.CompanyList().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
         public  async Task<dynamic> Get_PrivateList(string str)
         {
-            var get_url1 = await CommanUrl.PrivateList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+            //var get_url1 = await CommanUrl.PrivateList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+            var get_url1 = await CommanUrl.PrivateList().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
         public  async Task<dynamic> Get_EventList(string str)
         {
-            var get_url1 = await CommanUrl.EventList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+           //var get_url1 = await CommanUrl.EventList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+            var get_url1 = await CommanUrl.EventList().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
@@ -240,15 +242,17 @@ namespace TryingFLURL
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
-        public  async Task<dynamic> GetRegistration(FJC_Registration fJC_Registration)
+        public  async Task<dynamic> GetRegistration(int aud_id)
         {
-            var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
+            //var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
+            var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).SetQueryParam("str", aud_id).GetJsonAsync();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
         public  async Task<dynamic> Put_Registration(FJC_Registration fJC_Registration)
         {
-            var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
+            //var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
+            var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PutJsonAsync(fJC_Registration).ReceiveString();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
@@ -258,17 +262,19 @@ namespace TryingFLURL
             var get_url1 = await CommanUrl.DocUpload().WithHeader("Token", token).PostJsonAsync(fJC_DOC_Upload).ReceiveString();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
-        public  async Task<dynamic> Get_DocUpload(FJC_DOC_Upload fJC_DOC_Upload)
-        {
-            var get_url1 = await CommanUrl.DocUpload().WithHeader("Token", token).PostJsonAsync(fJC_DOC_Upload).ReceiveString();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
-        }
-
-        //public async Task<dynamic> Get_Docdownload()
+        //public  async Task<dynamic> Get_DocUpload(FJC_DOC_Upload fJC_DOC_Upload)
         //{
-        //    var get_url1 = await CommanUrl.DocUpload().WithHeader("token", token).PostJsonAsync().ReceiveString();
+        //   // var get_url1 = await CommanUrl.DocUpload().WithHeader("Token", token).PostJsonAsync(fJC_DOC_Upload).ReceiveString();
+        //    var get_url1 = await CommanUrl.DocUpload().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
         //    return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         //}
+
+        public async Task<dynamic> Get_Docdownload()
+        {
+           // var get_url1 = await CommanUrl.DocUpload().WithHeader("token", token).PostJsonAsync().ReceiveString();
+            var get_url1 = await CommanUrl.DocUpload().WithHeader("Token", token).GetJsonAsync();
+            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+        }
         public  async Task<dynamic> Post_Docdownload(string DownloadType)   //tri_partiate_agreement
         {
             var get_url1 = await CommanUrl.DocDownload().WithHeader("Token", token).PostJsonAsync(DownloadType).ReceiveString();

@@ -15,8 +15,9 @@ namespace TryingFLURL
   public static class CommanUrl
     {
         const string  DefaultUrl = "http://bigshareonline.com:6001";
+        //const string DefaultUrl = "http://localhost:6000";
 
-        
+        //////////////////////////////////////////////////////company/////////////////////////////////////////////
         public static string Login()
         {
             var UrlLogin = DefaultUrl.AppendPathSegment("api").AppendPathSegment("Login");
@@ -55,7 +56,7 @@ namespace TryingFLURL
             return _ComEvntDe;
         }
         
-          public static string PrivateList()
+        public static string PrivateList()
         {
             var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("private-list");
             return _ComEvntDe;
@@ -94,5 +95,16 @@ namespace TryingFLURL
             var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("DocumentDownload");
             return _ComEvntDe;
         }
+
+        ////////////////////////////////////////////////////////////////////RTA/////////////////////////////
+
+        public static string updateEvent()
+        {
+            var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("EVENTDetails");
+            return _ComEvntDe;
+        }
+
+      
+
     }
 }
