@@ -11,10 +11,10 @@ using evoting.Domain.Models;
 
 namespace TryingFLURL
 {
-  
-  public static class CommanUrl
+
+    public static class CommanUrl
     {
-        const string  DefaultUrl = "http://bigshareonline.com:6001";
+        const string DefaultUrl = "http://bigshareonline.com:6001";
         //const string DefaultUrl = "http://localhost:6000";
 
         //////////////////////////////////////////////////////company/////////////////////////////////////////////
@@ -49,13 +49,13 @@ namespace TryingFLURL
             var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("ApproveEvent");
             return _ComEvntDe;
         }
-        
+
         public static string CompanyList()
         {
             var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("list");
             return _ComEvntDe;
         }
-        
+
         public static string PrivateList()
         {
             var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("private-list");
@@ -95,6 +95,11 @@ namespace TryingFLURL
             var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("DocumentDownload");
             return _ComEvntDe;
         }
+        public static string userprofile()
+        {
+            var _ComEvntDe = DefaultUrl.AppendPathSegment("api").AppendPathSegment("user-profile");
+            return _ComEvntDe;
+        }
 
         ////////////////////////////////////////////////////////////////////RTA/////////////////////////////
 
@@ -104,7 +109,7 @@ namespace TryingFLURL
             return _ComEvntDe;
         }
 
-      
+
 
     }
 }
