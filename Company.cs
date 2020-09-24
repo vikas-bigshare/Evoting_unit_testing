@@ -126,6 +126,7 @@ namespace TryingFLURL
                 cs_fax_no = "23423",
                 cs_mobile_no = "1234567890",
                 panid = "XXXXXXXX10",
+                alt_mob_num = 9022120324,
                 rta_id = 2
             };
 
@@ -158,7 +159,6 @@ namespace TryingFLURL
         public async Task<dynamic> Post_Login(FJC_LoginRequest _fjc_login)
         {
             var get_url1 = await CommanUrl.Login().PostJsonAsync(_fjc_login).ReceiveString();
-            //return  JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
             dynamic _obj = JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
             token = _obj.data.Token;
             return _obj;

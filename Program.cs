@@ -76,6 +76,18 @@ namespace TryingFLURL
             //_objnew.CheckCompanyAdd(return_value1.data.Token);
             // Console.WriteLine(ret_login.data);
             //Console.ReadLine();
+
+            ////////////////////////////////////////////////scrutinizer///////////////////////////////////////
+
+            Scrutinizer _objScrut = new Scrutinizer();
+            var ret_logins = await _objScrut.Post_Login(Scrutinizer.Default_user());
+            var ret_Post_Regiscrut = await _objScrut.Post_Registration(Scrutinizer.Registration());
+            var ret_Post_ChangePass = await _objScrut.Post_ChangePasssword(Scrutinizer.change_password());
+            var ret_Get_DocdownScrut = await _objScrut.Get_Docdownload();
+            var ret_Post_DocdownScrut = await _objScrut.Post_Docdownload("tri_partiate_agreement");
+            var ret_Get_DocUplScrut = await _objScrut.Get_DocUpload();
+            var ret_Post_DocUplScrut = await _objScrut.Post_DocUpload(Scrutinizer.Docupload());
+            var ret_Get_PrifileScrut = await _objScrut.Get_Prifile(39);
         }
 
     }
