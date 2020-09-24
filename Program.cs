@@ -37,11 +37,11 @@ namespace TryingFLURL
             var ret_Post_ForgotPass = await _obj.PostForgotPassword(Company.forgot_password());
 
             var ret_Post_Registration = await _obj.Post_Registration(Company.Registration());
-            var ret_Get_Registration = await _obj.GetRegistration(13);
-            var ret_Put_Registration = await _obj.Put_Registration(Company.Registration());
+            /// var ret_Get_Registration = await _obj.GetRegistration(13);
+            /// var ret_Put_Registration = await _obj.Put_Registration(Company.Registration());
 
             var ret_Post_DocUpload = await _obj.Post_DocUpload(Company.Docupload());
-            //////var ret_Get_DocUpload = await _obj.Get_DocUpload(Company.Docupload());
+            ////var ret_Get_DocUpload = await _obj.Get_DocUpload(Company.Docupload());
             var ret_Get_Docdownload = await _obj.Get_Docdownload();
             var ret_Post_Docdownload = await _obj.Post_Docdownload("tri_partiate_agreement");
 
