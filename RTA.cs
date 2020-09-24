@@ -149,7 +149,8 @@ namespace TryingFLURL
         {
             //var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).PostJsonAsync(doc_id).ReceiveString();
             var get_url1 = await CommanUrl.updateEvent().WithHeader("Token", token).SetQueryParam("event_id", event_id).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var message = get_url1.data.file_name;
+            return get_url1;
         }
 
         public async Task<dynamic> Put_UpdateEven(FJC_UpdateEVENT fJC_UpdateEVENT)   //get error in result converting
@@ -166,11 +167,12 @@ namespace TryingFLURL
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
-        public async Task<dynamic> Get_FileUpload(int doc_id)   //get error in result converting
+        public async Task<dynamic> Get_FileUpload(int doc_id)  
         {
             // var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).PostJsonAsync(doc_id).ReceiveString();
             var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).SetQueryParam("doc_id", doc_id).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var message = get_url1.data.file_name;
+            return get_url1;
         }
         public async Task<dynamic> Post_Rom_Upload(FJC_ROMUpload fJC_ROM)
         {
@@ -188,21 +190,24 @@ namespace TryingFLURL
         {
             // var get_url1 = await CommanUrl.CompanyList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
             var get_url1 = await CommanUrl.CompanyList().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var message = get_url1.message;
+            return get_url1;
         }
 
         public async Task<dynamic> Get_PrivateList(string str)
         {
-            //var get_url1 = await CommanUrl.PrivateList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
+            
             var get_url1 = await CommanUrl.PrivateList().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var message = get_url1.message;
+            return get_url1;
         }
 
         public async Task<dynamic> Get_EventList(string str)
         {
             //var get_url1 = await CommanUrl.EventList().WithHeader("Token", token).PostJsonAsync(str).ReceiveString();
             var get_url1 = await CommanUrl.EventList().WithHeader("Token", token).SetQueryParam("str", str).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var message = get_url1.message;
+            return get_url1;
         }
 
         public async Task<dynamic> Post_ChangePasssword(FJC_ChangePassword fJC_ChangePassword)
@@ -223,19 +228,19 @@ namespace TryingFLURL
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
-        public async Task<dynamic> GetRegistration(int aud_id)
-        {
-            //var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
-            var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).SetQueryParam("str", aud_id).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
-        }
-
-        public async Task<dynamic> Put_Registration(FJC_Registration fJC_Registration)
-        {
-            //var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
-            var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PutJsonAsync(fJC_Registration).ReceiveString();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
-        }
+        //////public async Task<dynamic> GetRegistration(int aud_id)
+        //////{
+        //////    //var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
+        //////    var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).SetQueryParam("str", aud_id).GetJsonAsync();
+        //////    var message = get_url1.message;
+        //////    return get_url1;
+        //////}
+        //////public async Task<dynamic> Put_Registration(FJC_Registration fJC_Registration)
+        //////{
+        //////    //var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
+        //////    var get_url1 = await CommanUrl.Registration().WithHeader("Token", token).PutJsonAsync(fJC_Registration).ReceiveString();
+        //////    return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+        //////}
 
         public async Task<dynamic> Post_DocUpload(FJC_DOC_Upload fJC_DOC_Upload)
         {
@@ -247,12 +252,14 @@ namespace TryingFLURL
         {
             // var get_url1 = await CommanUrl.DocUpload().WithHeader("token", token).PostJsonAsync().ReceiveString();
             var get_url1 = await CommanUrl.DocUpload().WithHeader("Token", token).GetJsonAsync();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var message = get_url1.message;
+            return get_url1;
         }
         public async Task<dynamic> Post_Docdownload(string DownloadType)   //tri_partiate_agreement
         {
-            var get_url1 = await CommanUrl.DocDownload().WithHeader("Token", token).PostJsonAsync(DownloadType).ReceiveString();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var get_url1 = await CommanUrl.DocDownload().WithHeader("Token", token).SetQueryParam("DownloadType", DownloadType).PostJsonAsync("");
+            var message = get_url1.ReasonPhrase.ToString();
+            return get_url1;
         }
 
         public async Task<dynamic> Put_Prifile(FJC_Registration fJC_Registration)
@@ -261,10 +268,11 @@ namespace TryingFLURL
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
-        public async Task<dynamic> Post_Prifile(FJC_Registration fJC_Registration)
+        public async Task<dynamic> Get_Prifile(int aud_id)
         {
-            var get_url1 = await CommanUrl.userprofile().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var get_url1 = await CommanUrl.userprofile().WithHeader("Token", token).SetQueryParam("aud_id", aud_id).GetJsonAsync();
+            var message = get_url1.data.file_name;
+            return get_url1;
         }
     }
 }

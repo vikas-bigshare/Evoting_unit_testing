@@ -176,11 +176,18 @@ namespace TryingFLURL
             var get_url1 = await CommanUrl.ComEvntDetail().WithHeader("Token", token).PostJsonAsync(fJC_CompanyUpdate_Event).ReceiveString();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
-
-        public async Task<dynamic> Get_Company_Eventdetails(FJC_CompanyUpdate_Event fJC_CompanyUpdate_Event)
+        public async Task<dynamic> Put_Company_Eventdetails(FJC_CompanyUpdate_Event fJC_CompanyUpdate_Event)
         {
-            var get_url1 = await CommanUrl.ComEvntDetail().WithHeader("Token", token).PostJsonAsync(fJC_CompanyUpdate_Event).ReceiveString();
+            var get_url1 = await CommanUrl.ComEvntDetail().WithHeader("Token", token).PutJsonAsync(fJC_CompanyUpdate_Event).ReceiveString();
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+        }
+        public async Task<dynamic> Get_Company_Eventdetails(int event_id)
+        {
+            //var get_url1 = await CommanUrl.ComEvntDetail().WithHeader("Token", token).PostJsonAsync(fJC_CompanyUpdate_Event).ReceiveString();
+            var get_url1 = await CommanUrl.ComFileUpload().WithHeader("Token", token).SetQueryParam("doc_id", event_id).GetJsonAsync();
+            var message = get_url1.data.file_name;
+            return get_url1;
+          
         }
         public async Task<dynamic> Post_FileUpload()
         {
@@ -298,10 +305,11 @@ namespace TryingFLURL
             return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
         }
 
-        public async Task<dynamic> Post_Prifile(FJC_Registration fJC_Registration)
+        public async Task<dynamic> Get_Prifile(int aud_id)
         {
-            var get_url1 = await CommanUrl.userprofile().WithHeader("Token", token).PostJsonAsync(fJC_Registration).ReceiveString();
-            return JsonConvert.DeserializeObject<ExpandoObject>(get_url1, new ExpandoObjectConverter());
+            var get_url1 = await CommanUrl.userprofile().WithHeader("Token", token).SetQueryParam("aud_id", aud_id).GetJsonAsync();
+            var message = get_url1.data.file_name;
+            return get_url1;
         }
     }
 }

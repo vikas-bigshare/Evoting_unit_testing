@@ -23,7 +23,8 @@ namespace TryingFLURL
             var ret_login = await _obj.Post_Login(Company.Default_user());
             var ret_gene_event = await _obj.Post_GenerateEvent(Company.generate_event());
             var ret_com_event = await _obj.Post_Company_Eventdetails(Company.Com_event_detail());
-            var ret_comget_event = await _obj.Get_Company_Eventdetails(Company.Com_event_detail());
+            var ret_Put_com_event = await _obj.Put_Company_Eventdetails(Company.Com_event_detail());
+            var ret_comget_event = await _obj.Get_Company_Eventdetails(24);
             var ret_PostfileUpload = await _obj.Post_FileUpload();
             var ret_getfileUpload = await _obj.Get_FileUpload(61);
             var ret_romupload = await _obj.Post_Rom_Upload(Company.romupload());
@@ -46,7 +47,7 @@ namespace TryingFLURL
             var ret_Post_Docdownload = await _obj.Post_Docdownload("tri_partiate_agreement");
 
             var ret_Post_Registration2 = await _obj.Put_Prifile(Company.Registration());
-            var ret_Put_Registration2 = await _obj.Post_Prifile(Company.Registration());
+            var ret_Put_Registration2 = await _obj.Get_Prifile(38);
 
             /////////////////////////////////////////////////RTA////////////////////////////////
             RTA rTA = new RTA();
@@ -63,13 +64,13 @@ namespace TryingFLURL
             var ret_Get_EventList1 = await rTA.Get_EventList("current");
 
             var ret_Post_Registration1 = await rTA.Post_Registration(RTA.Registration());
-            var ret_Get_Registration1 = await rTA.GetRegistration(13);
-            var ret_Put_Registration1 = await rTA.Put_Registration(RTA.Registration());
+            //////var ret_Get_Registration1 = await rTA.GetRegistration(13);
+            //////var ret_Put_Registration1 = await rTA.Put_Registration(RTA.Registration());
             var ret_Post_DocUpload1 = await rTA.Post_DocUpload(RTA.Docupload());
             var ret_Get_Docdownload1 = await rTA.Get_Docdownload();
             var ret_Post_Docdownload1 = await rTA.Post_Docdownload("tri_partiate_agreement");
             var ret_Post_Registration3 = await rTA.Put_Prifile(RTA.Registration());
-            var ret_Put_Registration3 = await rTA.Post_Prifile(RTA.Registration());
+            var ret_Put_Registration3 = await rTA.Get_Prifile(38);
 
             //FlurlTry _objnew = new FlurlTry();
             //_objnew.CheckCompanyAdd(return_value1.data.Token);
